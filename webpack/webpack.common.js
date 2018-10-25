@@ -2,16 +2,14 @@ const fs = require('fs');
 const webpack = require('webpack');
 
 // Plugins
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
-const address = require('ip').address;
 
-const { PORT } = require('./const');
 const paths = require('./paths');
 
 const pugTemplates = [];
@@ -25,8 +23,7 @@ module.exports = {
       path.join(paths.dirSrcJs, 'app'),
     ],
     vendor: [
-      'es6-promise',
-      'fetch-polyfill',
+      'whatwg-fetch',
     ],
   },
   output: {
@@ -40,20 +37,20 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
-          { loader: "babel-loader" },
+          { loader: 'babel-loader' },
         ]
       },
       {
         test: /\.js$/,
-        use: ["source-map-loader"],
-        enforce: "pre",
+        use: ['source-map-loader'],
+        enforce: 'pre',
       },
       {
         test: /\.pug$/,
         use: [
           { loader: 'raw-loader' },
           {
-            loader: "pug-html-loader",
+            loader: 'pug-html-loader',
             options: {
               pretty: true,
             }

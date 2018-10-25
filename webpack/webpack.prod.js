@@ -4,7 +4,7 @@ const decorativeLines = require('./decorative-lines');
 const { randomBetween } = require('./utils');
 
 // Plugins
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackMessages = require('webpack-messages');
 
 module.exports = merge(baseConfig, {
@@ -20,13 +20,13 @@ module.exports = merge(baseConfig, {
           { loader: 'css-hot-loader' },
           { loader: MiniCssExtractPlugin.loader },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true,
             },
           },
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               sourceMap: true,
             },

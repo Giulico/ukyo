@@ -6,11 +6,20 @@ module.exports = {
     "node": true
   },
   "extends": "eslint:recommended",
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["compat"],
+  "settings": {
+    "polyfills": [
+      "fetch"
+    ],
+  },
+  "plugins": [
+    "babel",
+    "compat"
+  ],
   "rules": {
     "compat/compat": "error",
     "indent": ["error", 2],
