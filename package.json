@@ -11,9 +11,20 @@
     "production": "cross-env webpack --progress --hide-modules --config ./webpack/webpack.prod.js",
     "start": "webpack-dev-server --open --config ./webpack/webpack.dev.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "webpack 4",
+    "boilerplate",
+    "scss",
+    "pug",
+    "babel"
+  ],
+  "author": "Giulio Collesei",
   "license": "ISC",
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "not dead"
+  ],
   "devDependencies": {
     "@babel/core": "7.1.2",
     "@babel/preset-env": "7.1.0",
@@ -22,6 +33,7 @@
     "cross-env": "5.2.0",
     "css-hot-loader": "1.4.2",
     "css-loader": "1.0.0",
+    "eslint-plugin-compat": "^2.6.2",
     "extract-loader": "3.0.0",
     "file-loader": "2.0.0",
     "html-loader": "0.5.5",
@@ -56,6 +68,7 @@
   },
   "dependencies": {
     "es6-promise": "4.2.4",
+    "eslint": "^5.7.0",
     "fetch-polyfill": "0.8.2",
     "sass-mq": "5.0.0"
   }
