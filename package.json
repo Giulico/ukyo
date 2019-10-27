@@ -27,17 +27,17 @@
   ],
   "devDependencies": {
     "@babel/core": "7.6.4",
-    "@babel/polyfill": "^7.4.4",
+    "@babel/polyfill": "7.4.4",
     "@babel/preset-env": "7.6.3",
-    "babel-eslint": "^10.0.2",
+    "babel-eslint": "10.0.2",
     "babel-loader": "8.0.6",
     "copy-webpack-plugin": "5.0.4",
     "cross-env": "6.0.3",
     "css-hot-loader": "1.4.4",
     "css-loader": "3.2.0",
-    "eslint": "^6.0.1",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-compat": "^3.2.0",
+    "eslint": "6.0.1",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-compat": "3.2.0",
     "extract-loader": "3.1.0",
     "file-loader": "4.2.0",
     "html-loader": "0.5.5",
@@ -71,7 +71,8 @@
     "webpack-messages": "2.0.4"
   },
   "dependencies": {
+    "core-js": "3",
     "sass-mq": "5.0.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "3.0.0"
   }
 }
