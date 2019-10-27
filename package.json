@@ -71,7 +71,7 @@
     "webpack-messages": "2.0.4"
   },
   "dependencies": {
-    "core-js": "3",
+    "core-js": "2",
     "sass-mq": "5.0.1",
     "whatwg-fetch": "3.0.0"
   }
