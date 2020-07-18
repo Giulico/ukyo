@@ -71,7 +71,7 @@
     "webpack-messages": "2.0.4"
   },
   "dependencies": {
-    "core-js": "3.6.5",
+    "core-js": "3",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.0.5",
