@@ -1,6 +1,6 @@
 {
   "name": "ukyo",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Webpack 4 - SCSS - PUG boilerplate",
   "main": "index.js",
   "loglevel": "silent",
