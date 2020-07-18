@@ -59,3 +59,17 @@ or
 ```bash
 yarn build
 ```
+
+## Bundle Analyzer
+
+Ukyo uses [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) to visualize the size of webpack output with an interactive zoomable treemap.
+
+```bash
+npm run bundle-analyzer
+```
+
+or
+
+```bash
+yarn bundle-analyzer
+```

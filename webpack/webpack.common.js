@@ -24,7 +24,7 @@ module.exports = {
     path: paths.dirDist,
     filename: 'js/[name].js',
   },
-  stats: 'none',
+  stats: 'normal',
   module: {
     rules: [
       {

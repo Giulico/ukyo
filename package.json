@@ -10,7 +10,9 @@
     "dev": "node ./webpack/webpack.dev.js",
     "production": "cross-env webpack --progress --hide-modules --config ./webpack/webpack.prod.js",
     "start": "npm run dev",
-    "wp-help": "webpack-cli --help"
+    "create-stats": "webpack --config ./webpack/webpack.prod.js --profile --json > ./bundle/stats.json",
+    "read-stats": "webpack-bundle-analyzer ./bundle/stats.json ./public",
+    "bundle-analyzer": "npm run create-stats && npm run read-stats"
   },
   "keywords": [
     "webpack 4",
@@ -64,6 +66,7 @@
     "stylelint-scss": "3.18.0",
     "uglifyjs-webpack-plugin": "2.2.0",
     "webpack": "4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0",
     "webpack-format-messages": "2.0.6",
