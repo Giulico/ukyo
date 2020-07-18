@@ -1,11 +1,8 @@
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.common');
-const decorativeLines = require('./decorative-lines');
-const { randomBetween } = require('./utils');
+const baseConfig = require('./webpack.common')
+const { merge } = require('webpack-merge')
 
 // Plugins
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackMessages = require('webpack-messages');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -17,7 +14,6 @@ module.exports = merge(baseConfig, {
       {
         test: /\.scss$/,
         use: [
-          { loader: 'css-hot-loader' },
           { loader: MiniCssExtractPlugin.loader },
           {
             loader: 'css-loader',
@@ -31,18 +27,9 @@ module.exports = merge(baseConfig, {
               sourceMap: true,
             },
           },
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new WebpackMessages({
-      name: 'production',
-      logger: str => {
-        console.log('\n' + decorativeLines[randomBetween(0, decorativeLines.length - 1)]);
-        console.log(`${str}`);
+        ],
       },
-    })
-  ],
+    ],
+  },
   devtool: 'source-map',
-});
+})
