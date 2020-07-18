@@ -5,11 +5,11 @@
   "main": "index.js",
   "loglevel": "silent",
   "scripts": {
-    "build": "yarn clean -s && yarn production -s",
+    "build": "npm run clean -s && npm run production -s",
     "clean": "rimraf public",
     "dev": "node ./webpack/webpack.dev.js",
     "production": "cross-env webpack --progress --hide-modules --config ./webpack/webpack.prod.js",
-    "start": "yarn dev",
+    "start": "npm run dev",
     "wp-help": "webpack-cli --help"
   },
   "keywords": [
