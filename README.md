@@ -12,7 +12,7 @@ Ukyo is a frontend boilerplate that uses Webpack 4.
 - [x] Scss Hot module replacement
 - [x] Sass MQ
 
-# Gatting starded
+# Gatting started
 
 ## Clone Ukyo
 
