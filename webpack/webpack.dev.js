@@ -1,24 +1,18 @@
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-const baseConfig = require('./webpack.common');
+const webpack = require('webpack')
+const WebpackDevServer = require('webpack-dev-server')
+const { merge } = require('webpack-merge')
 
-const address = require('ip').address;
-const { PORT } = require('./const');
+const commonConfig = require('./webpack.common')
 
-// Plugins
-const WebpackMessages = require('webpack-messages');
+const { PORT } = require('./const')
 
-module.exports = merge(baseConfig, {
+const config = merge(commonConfig, {
   mode: 'development',
-  output: {
-    publicPath: `http://${address()}:${PORT}/`,
-  },
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: [
-          { loader: 'css-hot-loader' },
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
@@ -32,41 +26,43 @@ module.exports = merge(baseConfig, {
               sourceMap: true,
             },
           },
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new WebpackMessages({
-      name: 'development',
-      logger: str => {
-        console.log(`${str}`);
+        ],
       },
-    })
-  ],
-  devtool: 'eval-source-map',
-  devServer: {
-    compress: true,
-    quiet: true,
-    stats: {
-      assets: false,
-      children: false,
-      chunks: false,
-      chunkModules: false,
-      colors: true,
-      entrypoints: false,
-      hash: false,
-      modules: false,
-      timings: false,
-      version: false,
-    },
-    hot: true,
-    lazy: false,
-    host: address(),
-    port: PORT,
-    clientLogLevel: 'error',
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
+    ],
   },
-});
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  devtool: 'eval-source-map',
+})
+
+const serverOptions = {
+  compress: true,
+  quiet: true,
+  stats: {
+    assets: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
+    colors: true,
+    entrypoints: false,
+    hash: false,
+    modules: false,
+    timings: false,
+    version: false,
+  },
+  hot: true,
+  lazy: false,
+  host: 'localhost',
+  port: PORT,
+  clientLogLevel: 'error',
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+  },
+}
+
+// WebpackDevServer.addDevServerEntrypoints(config, serverOptions)
+const compiler = webpack(config)
+const server = new WebpackDevServer(compiler, serverOptions)
+
+server.listen(PORT, 'localhost', () => {
+  console.log(`Server started at: http://localhost:${PORT}`)
+})
