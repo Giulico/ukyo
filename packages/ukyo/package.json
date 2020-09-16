@@ -1,0 +1,67 @@
+{
+  "name": "ukyo",
+  "version": "2.0.0",
+  "description": "Ukyo is a frontend boilerplate that uses Webpack 4.",
+  "author": "Giulio Collesei <giuliocollesei@gmail.com>",
+  "bin": {
+    "ukyo": "./bin/run"
+  },
+  "bugs": "https://github.com/Giulico/ukyo/issues",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/Giulico/ukyo",
+  "license": "MIT",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "ukyo",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "Giulico/ukyo",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "chalk": "^4.1.0",
+    "enquirer": "^2.3.6",
+    "lodash": "^4.17.20",
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.2",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/test": "^1",
+    "@types/chai": "^4",
+    "@types/mocha": "^5",
+    "@types/node": "^10",
+    "chai": "^4",
+    "eslint": "^7.9.0",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-oclif-typescript": "^0.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "globby": "^10",
+    "mocha": "^5",
+    "nyc": "^14",
+    "prettier": "^2.1.2",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  }
+}
