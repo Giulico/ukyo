@@ -5,4 +5,4 @@ import '../pug/index.pug'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-console.log('Hi, my name is Ukyo!')
+console.log('Hi, my name is Ukyo! Open /src/js/app.js')
