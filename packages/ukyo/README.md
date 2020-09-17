@@ -15,49 +15,29 @@ ukyo-cli
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g ukyo-cli
-$ ukyo-cli COMMAND
+$ npm install -g ukyo
+$ ukyo COMMAND
 running command...
-$ ukyo-cli (-v|--version|version)
-ukyo-cli/0.0.0 darwin-x64 node-v12.18.3
-$ ukyo-cli --help [COMMAND]
+$ ukyo (-v|--version|version)
+ukyo/2.0.0-alpha.1 darwin-x64 node-v12.18.3
+$ ukyo --help [COMMAND]
 USAGE
-  $ ukyo-cli COMMAND
+  $ ukyo COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`ukyo-cli hello [FILE]`](#ukyo-cli-hello-file)
-* [`ukyo-cli help [COMMAND]`](#ukyo-cli-help-command)
+* [`ukyo help [COMMAND]`](#ukyo-help-command)
+* [`ukyo menu [FILE]`](#ukyo-menu-file)
 
-## `ukyo-cli hello [FILE]`
+## `ukyo help [COMMAND]`
 
-describe the command here
-
-```
-USAGE
-  $ ukyo-cli hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ ukyo-cli hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/Giulico/ukyo-cli/blob/v0.0.0/src/commands/hello.ts)_
-
-## `ukyo-cli help [COMMAND]`
-
-display help for ukyo-cli
+display help for ukyo
 
 ```
 USAGE
-  $ ukyo-cli help [COMMAND]
+  $ ukyo help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -67,4 +47,26 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src/commands/help.ts)_
+
+## `ukyo menu [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ ukyo menu [FILE]
+
+OPTIONS
+  -h, --help  show CLI help
+
+ALIASES
+  $ ukyo 
+
+EXAMPLE
+  $ ukyo menu
+       OR
+       $ ukyo menu --help
+```
+
+_See code: [src/commands/menu.ts](https://github.com/Giulico/ukyo/blob/v2.0.0-alpha.1/src/commands/menu.ts)_
 <!-- commandsstop -->
