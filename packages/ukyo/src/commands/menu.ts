@@ -15,10 +15,10 @@ const log = console.log
 const appDirectory = fs.realpathSync(process.cwd())
 const srcDirectory = path.resolve(appDirectory, 'src')
 const appPackageJson = path.resolve(appDirectory, 'package.json')
-// const templateDirectory = path.resolve(
-//   appDirectory,
-//   'node_modules/@genma/template/src'
-// )
+const templateDirectory = path.resolve(
+  appDirectory,
+  'node_modules/@ukyo-cli/core/src'
+)
 const ukyoPackage = require('../../package.json')
 
 export default class Hello extends Command {

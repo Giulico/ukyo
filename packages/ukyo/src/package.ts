@@ -9,8 +9,8 @@ function editPackage() {
   const packageJson = require(path.join(appDirectory, './package.json'))
 
   if (packageJson) {
-    _.set(packageJson, 'scripts.start', 'genma-webpack start')
-    _.set(packageJson, 'scripts.build', 'genma-webpack build')
+    _.set(packageJson, 'scripts.start', 'ukyo-core start')
+    _.set(packageJson, 'scripts.build', 'ukyo-core build')
     _.set(packageJson, 'browserslist', 'last 2 versions')
   }
 
