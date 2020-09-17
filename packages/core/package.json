@@ -81,5 +81,6 @@
     "prettier-eslint": "^11.0.0",
     "sass-mq": "5.0.1",
     "whatwg-fetch": "3.4.1"
-  }
+  },
+  "gitHead": "f33b4b94f961c12a6aa8b6110c7339c6f1285193"
 }

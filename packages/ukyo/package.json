@@ -63,5 +63,6 @@
     "prettier": "^2.1.2",
     "ts-node": "^8",
     "typescript": "^3.3"
-  }
+  },
+  "gitHead": "f33b4b94f961c12a6aa8b6110c7339c6f1285193"
 }
