@@ -1,4 +1,6 @@
 import { Command, flags } from '@oclif/command'
+import { createFolder } from '../utils.ts'
+
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -67,6 +69,8 @@ export default class Hello extends Command {
           // Check if ./src folder already exists and delete it
           if (fs.existsSync(srcDirectory)) {
             await this.srcAlreadyExists()
+          } else {
+            createFolder(srcDirectory)
           }
 
           // Check if package.json exists and create it
@@ -86,8 +90,8 @@ export default class Hello extends Command {
             // clearConsole()
             // printBanner(ukyoPackage.version)
             log(chalk.cyan('Installing dependencies...'))
-            // const dependencies = ['@genma/webpack-common', '@genma/template']
-            // execFileSync('npm', ['i'].concat(dependencies), { stdio: 'pipe' })
+            const dependencies = ['@ukyo-cli/core']
+            execFileSync('npm', ['i'].concat(dependencies), { stdio: 'pipe' })
           } catch (e) {
             log(chalk.red('Ukyo fails to intall the dependencies.'))
             log(
@@ -102,19 +106,18 @@ export default class Hello extends Command {
           editPackage()
 
           // Copy the minimum tree of folder
-          /*
           const ncp = require('ncp').ncp
 
-          ncp(templateDirectory, appDirectory, (err) => {
+          ncp(templateDirectory, srcDirectory, (err) => {
             if (err) {
               return console.error(err)
             }
           })
 
           // Congratulation message
-          clearConsole()
-          printBanner(ukyoPackage.version)
-          */
+          // clearConsole()
+
+          // printBanner(ukyoPackage.version)
           log(chalk.bold.green('Congratulation!'))
           log(chalk.green('Ukyo is ready. Use `npm start`'))
         }

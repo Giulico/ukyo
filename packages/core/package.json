@@ -4,6 +4,9 @@
   "description": "Webpack 4 - SCSS - PUG boilerplate",
   "main": "index.js",
   "loglevel": "silent",
+  "bin": {
+    "ukyo-core": "./bin/ukyo-core.js"
+  },
   "scripts": {
     "build": "npm run clean -s && npm run production -s",
     "clean": "rimraf public",
