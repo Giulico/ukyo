@@ -1,6 +1,6 @@
 {
   "name": "ukyo",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "Ukyo is a frontend boilerplate that uses Webpack 4.",
   "author": "Giulio Collesei <giuliocollesei@gmail.com>",
   "bin": {
