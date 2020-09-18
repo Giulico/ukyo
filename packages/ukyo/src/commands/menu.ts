@@ -1,5 +1,5 @@
 import { Command, flags } from '@oclif/command'
-import { createFolder } from '../utils.ts'
+import { createFolder } from '../utils'
 
 const fs = require('fs')
 const path = require('path')
