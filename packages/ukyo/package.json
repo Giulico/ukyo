@@ -38,6 +38,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@ukyo-cli/core": "2.0.0-alpha.2",
     "chalk": "^4.1.0",
     "enquirer": "^2.3.6",
     "lodash": "^4.17.20",
