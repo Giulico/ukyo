@@ -2159,6 +2159,19 @@
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
+"@ukyo-cli/core@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@ukyo-cli/core/-/core-2.0.0-alpha.2.tgz#0a8ed5d5a438b22c6e2844f60b77297c1e384e88"
+  integrity sha512-UH9LXrOkAJ8qOPqI6EDVkI7BbKSW2V0V61S4kpLM/FJOFCD0ecxBsfa+L369VO7eX4cm+ZioongKxzbvkgDegA==
+  dependencies:
+    core-js "3"
+    eslint-config-prettier "^6.11.0"
+    eslint-plugin-prettier "^3.1.4"
+    prettier "^2.1.2"
+    prettier-eslint "^11.0.0"
+    sass-mq "5.0.1"
+    whatwg-fetch "3.4.1"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
