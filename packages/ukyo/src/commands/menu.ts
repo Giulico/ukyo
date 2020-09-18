@@ -1,16 +1,19 @@
 import { Command, flags } from '@oclif/command'
 import { createFolder } from '../utils'
 
+// Propts
+import { pMenu, pPackageManager, pSrcFolder } from '../prompts'
+
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const chalk = require('chalk')
-const { execFileSync } = require('child_process')
-const { Select } = require('enquirer')
+const { execFile, execFileSync } = require('child_process')
 const rimraf = require('rimraf')
 
 const editPackage = require('../package.ts')
 
+const ora = require('ora')
 const log = console.log
 
 // Paths
@@ -45,26 +48,18 @@ export default class Hello extends Command {
   }
 
   showMenu() {
-    const prompt = new Select({
-      type: 'list',
-      name: 'start',
-      message: 'What are you looking for?',
-      choices: [
-        {
-          message: 'I want to install a fresh version of Ukyo on this folder',
-          name: 'install',
-        },
-        {
-          message: 'I want to upgrade Ukyo',
-          name: 'upgrade',
-        },
-      ],
-    })
-
-    prompt
+    pMenu
       .run()
       .then(async (answers) => {
-        log(answers)
+        if (answers === 'upgrade') {
+          log(
+            chalk.cyan(
+              `--------------------------------------------\nto upgrade use npm update or yarn upgrade\n--------------------------------------------`
+            )
+          )
+          process.exit(1)
+        }
+
         if (answers === 'install') {
           // Check if ./src folder already exists and delete it
           if (fs.existsSync(srcDirectory)) {
@@ -73,11 +68,13 @@ export default class Hello extends Command {
             createFolder(srcDirectory)
           }
 
+          const packageManager = await pPackageManager.run()
+
           // Check if package.json exists and create it
           if (!fs.existsSync(appPackageJson)) {
             log(chalk.cyan('Creating package.json...'))
             try {
-              execFileSync('npm', ['init'], { stdio: 'inherit' })
+              execFileSync(packageManager, ['init', '-y'], { stdio: 'inherit' })
             } catch (e) {
               log(chalk.red('Ukyo fails to initialize project.'))
               console.log(e.stderr)
@@ -86,12 +83,27 @@ export default class Hello extends Command {
           }
 
           // Install dependencies
+          const spinner = ora({
+            text: 'Installing Ukyo....',
+            color: 'yellow',
+            spinner: 'growVertical',
+          }).start()
+
           try {
             // clearConsole()
             // printBanner(ukyoPackage.version)
-            log(chalk.cyan('Installing dependencies...'))
             const dependencies = ['@ukyo-cli/core']
-            execFileSync('npm', ['i'].concat(dependencies), { stdio: 'pipe' })
+            const installCommand = packageManager === 'npm' ? 'i' : 'add'
+            // Need to wrap to make spinner works
+            await new Promise((resolve) => {
+              execFile(
+                packageManager,
+                [installCommand].concat(dependencies),
+                { stdio: 'pipe' },
+                resolve
+              )
+            })
+            spinner.succeed()
           } catch (e) {
             log(chalk.red('Ukyo fails to intall the dependencies.'))
             log(
@@ -99,6 +111,7 @@ export default class Hello extends Command {
                 'The installation process will continue. Please use `npm i` at the end of the process.'
               )
             )
+            spinner.fail()
             console.log(e.stderr)
           }
 
@@ -118,35 +131,18 @@ export default class Hello extends Command {
           // clearConsole()
 
           // printBanner(ukyoPackage.version)
-          log(chalk.bold.green('Congratulation!'))
-          log(chalk.green('Ukyo is ready. Use `npm start`'))
+          log(chalk.bold.green(`Ukyo is ready!`))
+          log(chalk.cyan(`Run: ${packageManager} start`))
         }
       })
       .catch(log)
   }
 
   srcAlreadyExists() {
-    const prompt = new Select({
-      type: 'list',
-      message: "The folder './src' already exists. Override it?",
-      name: 'src-folder',
-      choices: [
-        {
-          message:
-            "Yes, remove './src' folder and start with a fresh copy of it",
-          name: 'override',
-        },
-        {
-          message: "No, wait! Exit Ukyo, I'll handle this by my self.",
-          name: 'exit',
-        },
-      ],
-    })
-
-    return prompt
+    return pSrcFolder
       .run()
       .then((answers) => {
-        if (answers['src-folder'] === 'override') {
+        if (answers === 'override') {
           // Delete src folder
           rimraf.sync(srcDirectory)
         } else {
