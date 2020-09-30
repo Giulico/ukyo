@@ -7,7 +7,7 @@ process.on('unhandledRejection', (err) => {
   throw err
 })
 
-import { spawnSync } from 'child_process'
+const { spawnSync } = require('child_process')
 
 const args = process.argv.slice(2)
 
