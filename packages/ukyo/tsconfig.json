@@ -6,8 +6,9 @@
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,
-    "noImplicitAny": false,
     "target": "es2017"
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
