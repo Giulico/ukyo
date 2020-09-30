@@ -1,6 +1,10 @@
-# Ukyo ![Version](https://img.shields.io/github/package-json/v/Giulico/Ukyo?style=flat-square)
+# Ukyo II
 
 Ukyo is a frontend boilerplate that uses Webpack 4.
+
+![Ukyo](https://ik.imagekit.io/iofccegorv/ukyo_HS1F8zpoD.jpg)
+
+#
 
 ![Ukyo](https://preview.ibb.co/mDpt1e/ukyo_tools.jpg)
 
