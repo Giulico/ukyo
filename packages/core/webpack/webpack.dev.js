@@ -2,9 +2,13 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const { merge } = require('webpack-merge')
 
+const openBrowser = require('../utils/openBrowser')
 const commonConfig = require('./webpack.common')
+const clearConsole = require('../utils/clearConsole')
+const isInteractive = process.stdout.isTTY
 
 const { PORT } = require('./const')
+const HOST = process.env.HOST || '0.0.0.0'
 
 const config = merge(commonConfig, {
   mode: 'development',
@@ -37,6 +41,7 @@ const config = merge(commonConfig, {
 const serverOptions = {
   compress: true,
   quiet: true,
+  historyApiFallback: true,
   stats: {
     assets: false,
     children: false,
@@ -49,9 +54,9 @@ const serverOptions = {
     timings: false,
     version: false,
   },
-  hot: true,
   lazy: false,
-  host: 'localhost',
+  // hot: true,
+  host: HOST,
   port: PORT,
   clientLogLevel: 'error',
   headers: {
@@ -63,6 +68,13 @@ const serverOptions = {
 const compiler = webpack(config)
 const server = new WebpackDevServer(compiler, serverOptions)
 
-server.listen(PORT, 'localhost', () => {
+server.listen(PORT, HOST, (err) => {
+  if (err) {
+    return console.log(err)
+  }
+  if (isInteractive) {
+    clearConsole()
+  }
+  openBrowser(`http://localhost:${PORT}`)
   console.log(`Server started at: http://localhost:${PORT}`)
 })

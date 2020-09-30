@@ -1,50 +1,47 @@
-# Ukyo
+# Ukyo ![Version](https://img.shields.io/github/package-json/v/Giulico/Ukyo?style=flat-square)
 
 Ukyo is a frontend boilerplate that uses Webpack 4.
 
 ![Ukyo](https://preview.ibb.co/mDpt1e/ukyo_tools.jpg)
 
 - [x] Webpack 4
-- [x] Babel 7.10
+- [x] Babel 7
 - [x] JS Hot module replacement
 - [x] Pug template engine
 - [x] Scss style preprocessor
 - [x] Scss Hot module replacement
 - [x] Sass MQ
 
-# Gatting started
+# Getting started
 
-## Clone Ukyo
-
-```bash
-git clone https://github.com/Giulico/ukyo.git
-```
-
-## Install the dependencies
+## Create a directory and move into it
 
 ```bash
-npm install
+mkdir my-app
+cd my-app
 ```
 
-or
+## Install and run Ukyo
 
 ```bash
-yarn install
+npx ukyo
 ```
+
+If you've previously installed `ukyo` globally via `npm i -g ukyo`, we recommend you uninstall the package using `npm uninstall -g ukyo` or `yarn global remove ukyo` to ensure that npx always uses the latest version.
 
 ## Start the development server
 
+You don’t need to install or configure tools like Webpack or Babel.
+They are preconfigured and hidden so that you can focus on the code.
+
+Create a folder, install Ukyo, and you’re good to go.
+
 ```bash
 npm start
+# yarn start
 ```
 
-or
-
-```bash
-yarn start
-```
-
-Then open up [http://localhost:3000](http://localhost:3000)
+The page will automatically show up, if it doesn't, open [http://localhost:3000](http://localhost:3000)
 
 ## Production build
 
@@ -52,12 +49,7 @@ The production script creates minified bundles with lighter weight source maps w
 
 ```bash
 npm run build
-```
-
-or
-
-```bash
-yarn build
+# yarn build
 ```
 
 ## Bundle Analyzer
@@ -66,10 +58,5 @@ Ukyo uses [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-b
 
 ```bash
 npm run bundle-analyzer
-```
-
-or
-
-```bash
-yarn bundle-analyzer
+# yarn bundle-analyzer
 ```
