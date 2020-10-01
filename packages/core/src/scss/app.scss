@@ -1,7 +1,4 @@
 @import 'base/variables';
 @import 'base/global';
 
-body {
-  background-color: $primary;
-  // background-color: blue;
-}
+@import './objects/background';

@@ -55,7 +55,7 @@ const serverOptions = {
     version: false,
   },
   lazy: false,
-  // hot: true,
+  hot: true,
   host: HOST,
   port: PORT,
   clientLogLevel: 'error',

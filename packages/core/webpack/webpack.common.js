@@ -7,22 +7,20 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const path = require('path')
-
-const paths = require('./paths')
+const { entryApp, outputApp, dirPugTemplates } = require('./paths')
 
 const pugTemplates = []
-const srcll = fs.readdirSync(paths.dirSrcPug)
+const srcll = fs.readdirSync(dirPugTemplates)
 srcll.forEach((s) => s.endsWith('.pug') && pugTemplates.push(s))
 
 module.exports = {
-  entry: {
-    app: path.join(paths.dirSrcJs, 'app.js'),
-    vendor: ['whatwg-fetch'],
-  },
+  entry: [entryApp],
   output: {
-    path: paths.dirDist,
-    filename: 'js/[name].js',
+    path: outputApp,
+    filename:
+      process.env.NODE_ENV === 'production'
+        ? '[name]-[contenthash].js'
+        : '[name].[hash].js',
   },
   stats: 'normal',
   module: {
@@ -69,17 +67,16 @@ module.exports = {
       (templateName) =>
         new HtmlWebPackPlugin({
           inject: true,
-          template: `./src/pug/${templateName}`,
-          filename: path.join(
-            paths.dirDist,
-            templateName.replace('.pug', '.html')
-          ),
+          template: `${dirPugTemplates}/${templateName}`,
           minify: false,
           alwaysWriteToDisk: true,
         })
     ),
     new MiniCssExtractPlugin({
-      filename: 'css/app.css',
+      filename:
+        process.env.NODE_ENV === 'production'
+          ? '[name]-[contenthash].css'
+          : '[name]-[hash].css',
     }),
     new CopyPlugin({
       patterns: [{ from: 'src/assets', to: 'assets' }],
