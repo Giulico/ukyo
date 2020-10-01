@@ -1,6 +1,6 @@
 {
   "name": "@ukyo-cli/core",
-  "version": "2.0.0-alpha.11",
+  "version": "2.0.0-alpha.12",
   "description": "Webpack 4 - SCSS - PUG boilerplate",
   "main": "index.js",
   "loglevel": "silent",
