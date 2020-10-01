@@ -8,7 +8,7 @@ function editPackage() {
 
   if (packageJson) {
     set(packageJson, "main", "./src/js/app.js");
-    set(packageJson, "scripts.build", "npm clean && ukyo-core build");
+    set(packageJson, "scripts.build", "npm run clean && ukyo-core build");
     set(packageJson, "scripts.clean", "rimraf dist");
     set(packageJson, "scripts.start", "ukyo-core start");
     set(packageJson, "browserslist", "last 2 versions");
