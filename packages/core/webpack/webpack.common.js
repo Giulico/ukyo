@@ -60,34 +60,20 @@ module.exports = {
           'css-loader',
         ],
       },
-      {
-        test: /\.svg$/,
-        use: ['svg-loader'],
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
-    ...pugTemplates.map(
-      (templateName) =>
-        new HtmlWebPackPlugin({
-          inject: true,
-          template: `${dirPugTemplates}/${templateName}`,
-          minify: false,
-          alwaysWriteToDisk: true,
-        })
-    ),
+    ...pugTemplates.map((templateName) => {
+      const [name] = templateName.split('.')
+      const folder = name === 'index' ? '' : `/${name}`
+      return new HtmlWebPackPlugin({
+        inject: true,
+        template: `${dirPugTemplates}/${templateName}`,
+        filename: `${outputApp}${folder}/index.html`,
+        minify: false,
+        alwaysWriteToDisk: true,
+      })
+    }),
     new MiniCssExtractPlugin({
       filename:
         process.env.NODE_ENV === 'production'

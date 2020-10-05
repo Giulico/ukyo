@@ -55,7 +55,7 @@ class Menu extends Command {
         if (answers === "upgrade") {
           log(
             chalk.cyan(
-              `--------------------------------------------\nto upgrade use npm update or yarn upgrade\n--------------------------------------------`
+              "--------------------------------------------\nto upgrade use npm update or yarn upgrade\n--------------------------------------------"
             )
           );
           process.exit(1);
@@ -130,7 +130,7 @@ class Menu extends Command {
             }
           });
 
-          log(chalk.bold.green(`Ukyo is ready!`));
+          log(chalk.bold.green("Ukyo is ready!"));
           log(chalk.cyan(`Run: ${packageManager} start`));
         }
       })

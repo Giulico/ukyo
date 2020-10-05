@@ -6,6 +6,7 @@ describe("Menu command", () => {
     .command([""])
     .it("runs menu by default", (ctx) => {
       expect(ctx.stdout).to.contain("How can I help you?");
+      process.exit(0);
     });
 
   // test
