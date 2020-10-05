@@ -73,3 +73,9 @@ or
 ```bash
 yarn bundle-analyzer
 ```
+
+# FAQ
+
+### How can I navigate through multiple pug files?
+
+Ukyo compiles as many pug files as it found in the `/src/pug` directory. Each compiled file is placed into a separate folder. For example, if you create a `/src/pug/second-page.pug` file you can visit it from `http://localhost:3000/second-page`.
