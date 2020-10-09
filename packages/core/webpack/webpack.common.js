@@ -14,7 +14,9 @@ const srcll = fs.readdirSync(dirPugTemplates)
 srcll.forEach((s) => s.endsWith('.pug') && pugTemplates.push(s))
 
 module.exports = {
-  entry: [entryApp],
+  entry: {
+    app: entryApp,
+  },
   output: {
     path: outputApp,
     filename:
@@ -45,19 +47,6 @@ module.exports = {
               pretty: true,
             },
           },
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hrm: process.env.NODE_ENV === 'development',
-              reloadAll: true,
-            },
-          },
-          'css-loader',
         ],
       },
     ],

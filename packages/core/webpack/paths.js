@@ -7,9 +7,11 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath)
 const dirPugTemplates = resolveApp('src/pug')
 const entryApp = resolveApp('src/js/app.js')
 const outputApp = resolveApp('dist')
+const configOverride = resolveApp('config.override.js')
 
 module.exports = {
   dirPugTemplates,
   entryApp,
   outputApp,
+  configOverride,
 }

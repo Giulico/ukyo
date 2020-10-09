@@ -1,10 +1,14 @@
+const fs = require('fs')
 const baseConfig = require('./webpack.common')
 const { merge } = require('webpack-merge')
 
 // Plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = merge(baseConfig, {
+// Paths
+const { configOverride } = require('./paths')
+
+let config = merge(baseConfig, {
   mode: 'production',
   output: {
     publicPath: '/',
@@ -33,3 +37,18 @@ module.exports = merge(baseConfig, {
   },
   devtool: 'source-map',
 })
+
+if (fs.existsSync(configOverride)) {
+  try {
+    const override = require(configOverride).prod
+    if (typeof override === 'function') {
+      config = override(config)
+    } else {
+      throw new Error("config.override.js doesn't export a prod function")
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+module.exports = config
