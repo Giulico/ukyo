@@ -4,6 +4,8 @@ const { merge } = require('webpack-merge')
 
 // Plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 // Paths
 const { configOverride } = require('./paths')
@@ -36,6 +38,16 @@ let config = merge(baseConfig, {
     ],
   },
   devtool: 'source-map',
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
 })
 
 if (fs.existsSync(configOverride)) {
