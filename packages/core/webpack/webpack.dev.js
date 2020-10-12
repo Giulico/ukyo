@@ -52,7 +52,7 @@ if (fs.existsSync(configOverride)) {
     if (typeof override === 'function') {
       config = override(config)
     } else {
-      throw new Error("config.override.js doesn't export a prod function")
+      throw new Error("config.override.js doesn't export a dev function")
     }
   } catch (err) {
     console.log(err)
