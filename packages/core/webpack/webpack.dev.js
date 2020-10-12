@@ -1,3 +1,4 @@
+const fs = require('fs')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const { merge } = require('webpack-merge')
@@ -7,10 +8,14 @@ const commonConfig = require('./webpack.common')
 const clearConsole = require('../utils/clearConsole')
 const isInteractive = process.stdout.isTTY
 
+const { configOverride } = require('./paths')
 const { PORT } = require('./const')
 const HOST = process.env.HOST || '0.0.0.0'
 
-const config = merge(commonConfig, {
+//
+// DEV Config
+//
+let config = merge(commonConfig, {
   mode: 'development',
   module: {
     rules: [
@@ -38,6 +43,25 @@ const config = merge(commonConfig, {
   devtool: 'eval-source-map',
 })
 
+//
+// Override handler
+//
+if (fs.existsSync(configOverride)) {
+  try {
+    const override = require(configOverride).dev
+    if (typeof override === 'function') {
+      config = override(config)
+    } else {
+      throw new Error("config.override.js doesn't export a prod function")
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+//
+// Dev server
+//
 const serverOptions = {
   compress: true,
   quiet: true,
