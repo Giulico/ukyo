@@ -9,7 +9,7 @@
   "main": "lib/index.js",
   "bugs": "https://github.com/Giulico/ukyo/issues",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "files": [
     "/bin",
@@ -54,6 +54,7 @@
     "@types/chai": "^4",
     "@types/mocha": "^5",
     "@types/node": "^14.11.1",
+    "babel-eslint": "^10.1.0",
     "chai": "^4",
     "eslint": "^7.10.0",
     "eslint-config-oclif": "^3.1",
@@ -64,6 +65,7 @@
     "mocha": "^5",
     "nyc": "^14",
     "prettier": "^2.1.2",
+    "prettier-eslint": "^11.0.0",
     "ts-node": "^8",
     "typescript": "^4"
   },

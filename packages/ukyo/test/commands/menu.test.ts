@@ -1,13 +1,13 @@
-import { expect, test } from "@oclif/test";
+import { expect, test } from '@oclif/test'
 
-describe("Menu command", () => {
+describe('Menu command', () => {
   test
     .stdout()
-    .command([""])
-    .it("runs menu by default", (ctx) => {
-      expect(ctx.stdout).to.contain("How can I help you?");
-      process.exit(0);
-    });
+    .command([''])
+    .it('runs menu by default', (ctx) => {
+      expect(ctx.stdout).to.contain('How can I help you?')
+      process.exit(0)
+    })
 
   // test
   //   .stdout()
@@ -15,4 +15,4 @@ describe("Menu command", () => {
   //   .it("runs hello --name jeff", (ctx) => {
   //     expect(ctx.stdout).to.contain("hello jeff");
   //   });
-});
+})
