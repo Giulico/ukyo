@@ -6,6 +6,8 @@ Ukyo is a frontend boilerplate that uses Webpack 4.
 
 #
 
+[![Build Status](https://travis-ci.com/Giulico/ukyo.svg?branch=master)](https://travis-ci.com/Giulico/ukyo)
+
 ![Ukyo](https://preview.ibb.co/mDpt1e/ukyo_tools.jpg)
 
 - [x] Webpack 4
