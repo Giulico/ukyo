@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge')
 
 // Plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 // Paths
@@ -31,6 +31,9 @@ let config = merge(baseConfig, {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
             },
           },
         ],
@@ -40,12 +43,20 @@ let config = merge(baseConfig, {
   devtool: 'source-map',
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true, // set to true if you want JS source maps
+        sourceMap: true,
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      new OptimizeCSSAssetsPlugin({
+        preset: [
+          'advanced',
+          {
+            autoprefixer: true,
+            normalizeWhitespace: false,
+          },
+        ],
+      }),
     ],
   },
 })

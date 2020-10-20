@@ -75,7 +75,6 @@
     "stylelint-order": "4.1.0",
     "stylelint-scss": "3.18.0",
     "svg-loader": "^0.0.2",
-    "uglifyjs-webpack-plugin": "2.2.0",
     "url-loader": "^4.1.1",
     "webpack": "4.44.2",
     "webpack-bundle-analyzer": "^3.9.0",
@@ -86,5 +85,9 @@
     "webpack-messages": "2.0.4",
     "whatwg-fetch": "3.4.1"
   },
-  "gitHead": "f33b4b94f961c12a6aa8b6110c7339c6f1285193"
+  "gitHead": "f33b4b94f961c12a6aa8b6110c7339c6f1285193",
+  "devDependencies": {
+    "cssnano-preset-advanced": "^4.0.7",
+    "terser-webpack-plugin": "^4.2.3"
+  }
 }
