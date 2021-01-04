@@ -19,7 +19,7 @@ $ npm install -g ukyo
 $ ukyo COMMAND
 running command...
 $ ukyo (-v|--version|version)
-ukyo/2.4.0 darwin-x64 node-v14.15.1
+ukyo/2.4.1 darwin-x64 node-v14.15.1
 $ ukyo --help [COMMAND]
 USAGE
   $ ukyo COMMAND
@@ -68,5 +68,5 @@ EXAMPLE
        $ ukyo menu --help
 ```
 
-_See code: [src/commands/menu.ts](https://github.com/Giulico/ukyo/blob/v2.4.0/src/commands/menu.ts)_
+_See code: [src/commands/menu.ts](https://github.com/Giulico/ukyo/blob/v2.4.1/src/commands/menu.ts)_
 <!-- commandsstop -->
