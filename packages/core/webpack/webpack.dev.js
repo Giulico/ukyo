@@ -93,8 +93,8 @@ if (fs.existsSync(configOverride)) {
   } catch (err) {
     throw new Error(`================
       Errors with config.override.js
-      dev, prod and webServer must be functions with config as input AND output
-      showLog is a boolean (default false) `)
+      the exported props dev, prod and webServer must be functions with config as input AND output
+      the exported prop showLog is a boolean (default false) `)
   }
 }
 
