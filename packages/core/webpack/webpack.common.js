@@ -5,11 +5,24 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
-const { entryApp, outputApp, dirPugTemplates } = require('./paths')
+const {
+  entryApp,
+  outputApp,
+  dirPugTemplates,
+  appPackageJson,
+} = require('./paths')
 
+// List pug templates to use them with HtmlWebPackPlugin
 const pugTemplates = []
 const srcll = fs.readdirSync(dirPugTemplates)
 srcll.forEach((s) => s.endsWith('.pug') && pugTemplates.push(s))
+
+// Browserslist config in <app>/package.json
+const customPackageJson = require(appPackageJson)
+const customTargets =
+  customPackageJson && customPackageJson.browserslist
+    ? [customPackageJson.browserslist]
+    : []
 
 module.exports = {
   entry: {
@@ -31,7 +44,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage',
+                  corejs: { version: 3, proposals: true },
+                  targets: [].concat(customTargets),
+                },
+              ],
+            ],
             plugins: ['@babel/plugin-proposal-class-properties'],
           },
         },

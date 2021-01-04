@@ -12,6 +12,8 @@ const { configOverride } = require('./paths')
 const { PORT } = require('./const')
 const HOST = process.env.HOST || '0.0.0.0'
 
+let showLog = false
+
 //
 // DEV Config
 //
@@ -44,25 +46,9 @@ let config = merge(commonConfig, {
 })
 
 //
-// Override handler
-//
-if (fs.existsSync(configOverride)) {
-  try {
-    const override = require(configOverride).dev
-    if (typeof override === 'function') {
-      config = override(config)
-    } else {
-      throw new Error("config.override.js doesn't export a dev function")
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-//
 // Dev server
 //
-const serverOptions = {
+let serverOptions = {
   compress: true,
   quiet: true,
   historyApiFallback: true,
@@ -88,6 +74,30 @@ const serverOptions = {
   },
 }
 
+//
+// Override handler
+//
+if (fs.existsSync(configOverride)) {
+  try {
+    const overrideWPConfig = require(configOverride).dev
+    const overrideWebServer = require(configOverride).webServer
+    showLog = !!require(configOverride).showLog
+
+    if (typeof overrideWPConfig === 'function') {
+      config = overrideWPConfig(config)
+    }
+
+    if (typeof overrideWebServer === 'function') {
+      serverOptions = overrideWebServer(serverOptions)
+    }
+  } catch (err) {
+    throw new Error(`================
+      Errors with config.override.js
+      dev, prod and webServer must be functions with config as input AND output
+      showLog is a boolean (default false) `)
+  }
+}
+
 // WebpackDevServer.addDevServerEntrypoints(config, serverOptions)
 const compiler = webpack(config)
 const server = new WebpackDevServer(compiler, serverOptions)
@@ -96,7 +106,7 @@ server.listen(PORT, HOST, (err) => {
   if (err) {
     return console.log(err)
   }
-  if (isInteractive) {
+  if (isInteractive && !showLog) {
     clearConsole()
   }
   openBrowser(`http://localhost:${PORT}`)
