@@ -1,6 +1,6 @@
 {
   "name": "ukyo",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Ukyo is a frontend boilerplate that uses Webpack 4.",
   "author": "Giulio Collesei <giuliocollesei@gmail.com>",
   "bin": {
@@ -39,7 +39,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
-    "@ukyo-cli/core": "^2.3.0",
+    "@ukyo-cli/core": "^2.4.0",
     "chalk": "^4.1.0",
     "enquirer": "^2.3.6",
     "lodash": "^4.17.20",
