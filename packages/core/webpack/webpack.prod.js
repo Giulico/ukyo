@@ -1,4 +1,5 @@
 const fs = require('fs')
+const autoprefixer = require('autoprefixer')
 const baseConfig = require('./webpack.common')
 const { merge } = require('webpack-merge')
 
@@ -8,7 +9,14 @@ const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 // Paths
-const { configOverride } = require('./paths')
+const { configOverride, appPackageJson } = require('./paths')
+
+// Browserslist config in <app>/package.json
+const customPackageJson = require(appPackageJson)
+const customTargets =
+  customPackageJson && customPackageJson.browserslist
+    ? [customPackageJson.browserslist]
+    : []
 
 let config = merge(baseConfig, {
   mode: 'production',
@@ -25,6 +33,19 @@ let config = merge(baseConfig, {
             loader: 'css-loader',
             options: {
               sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: [
+                  autoprefixer({
+                    overrideBrowserslist: customTargets,
+                  }),
+                ],
+              },
             },
           },
           {

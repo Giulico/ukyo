@@ -1,6 +1,7 @@
 const fs = require('fs')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
+const autoprefixer = require('autoprefixer')
 const { merge } = require('webpack-merge')
 
 const openBrowser = require('../utils/openBrowser')
@@ -8,11 +9,18 @@ const commonConfig = require('./webpack.common')
 const clearConsole = require('../utils/clearConsole')
 const isInteractive = process.stdout.isTTY
 
-const { configOverride } = require('./paths')
+const { configOverride, appPackageJson } = require('./paths')
 const { PORT } = require('./const')
 const HOST = process.env.HOST || '0.0.0.0'
 
 let showLog = false
+
+// Browserslist config in <app>/package.json
+const customPackageJson = require(appPackageJson)
+const customTargets =
+  customPackageJson && customPackageJson.browserslist
+    ? [customPackageJson.browserslist]
+    : []
 
 //
 // DEV Config
@@ -29,6 +37,19 @@ let config = merge(commonConfig, {
             loader: 'css-loader',
             options: {
               sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: [
+                  autoprefixer({
+                    overrideBrowserslist: customTargets,
+                  }),
+                ],
+              },
             },
           },
           {
